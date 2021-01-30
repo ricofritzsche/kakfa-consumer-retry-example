@@ -1,0 +1,22 @@
+server:
+  port: 5600
+
+spring:
+  kafka:
+    producer:
+      value-serializer: dev.bluvolve.kafka.errorresistantconsumer.processing.EventJsonSerializer
+kafka:
+  listener:
+    ack-mode: record
+  consumer:
+    topic: patientNameChanged,patientAddressChanged,patientNameChanged_erc_retry
+    group: erc
+    servers: localhost:9092
+
+
+logging:
+  level:
+    dev:
+      bluvolve:
+        kafka:
+          errorresistantconsumer: DEBUG
